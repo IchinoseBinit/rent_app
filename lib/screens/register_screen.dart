@@ -41,6 +41,7 @@ class RegisterScreen extends StatelessWidget {
                 textInputType: TextInputType.emailAddress,
                 textInputAction: TextInputAction.next,
                 validate: (value) => ValidationMixin().validateEmail(value!),
+                onFieldSubmitted: (_) {},
               ),
               SizedBox(
                 height: SizeConfig.height * 2,
@@ -52,10 +53,11 @@ class RegisterScreen extends StatelessWidget {
                 textInputType: TextInputType.visiblePassword,
                 textInputAction: TextInputAction.next,
                 validate: (value) => ValidationMixin().validatePassword(value!),
+                onFieldSubmitted: (_) {},
               ),
               SizedBox(height: SizeConfig.height * 2),
               GeneralTextField(
-                title: "ConfirmPassword",
+                title: "Confirm Password",
                 isObscure: true,
                 controller: confirmPasswordController,
                 textInputType: TextInputType.visiblePassword,
@@ -64,13 +66,14 @@ class RegisterScreen extends StatelessWidget {
                     passwordController.text,
                     isConfirmPassword: true,
                     confirmValue: value!),
+                onFieldSubmitted: (_) {
+                  submit(context);
+                },
               ),
               SizedBox(height: SizeConfig.height * 2),
               ElevatedButton(
-                onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    submit(context);
-                  }
+                onPressed: () async {
+                  await submit(context);
                 },
                 child: Text("Register"),
               ),
@@ -82,16 +85,27 @@ class RegisterScreen extends StatelessWidget {
   }
 
   submit(context) async {
-    // Navigator.of(context).pop();
     try {
-      final firebaseAuth = FirebaseAuth.instance;
-      GeneralAlertDialog().customLoadingDialog(context);
-      await firebaseAuth.createUserWithEmailAndPassword(
-          email: emailController.text, password: passwordController.text);
+      if (formKey.currentState!.validate()) {
+        final firebaseAuth = FirebaseAuth.instance;
+        GeneralAlertDialog().customLoadingDialog(context);
+        await firebaseAuth.createUserWithEmailAndPassword(
+            email: emailController.text, password: passwordController.text);
+        Navigator.pop(context);
+        Navigator.pop(context);
+      }
+    } on FirebaseAuthException catch (ex) {
       Navigator.pop(context);
+      var message = "";
+      if (ex.code == "email-already-in-use") {
+        message = "The email address is already used";
+      } else if (ex.code == "weak-password") {
+        message = "The password is too weak";
+      }
+      await GeneralAlertDialog().customAlertDialog(context, message);
     } catch (ex) {
       Navigator.pop(context);
-      GeneralAlertDialog().customAlertDialog(context, ex.toString());
+      await GeneralAlertDialog().customAlertDialog(context, ex.toString());
     }
   }
 }
