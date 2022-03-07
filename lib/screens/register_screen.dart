@@ -20,6 +20,7 @@ class RegisterScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("Register"),
       ),
+      backgroundColor: Colors.white,
       body: Padding(
         padding: basePadding,
         child: SingleChildScrollView(
