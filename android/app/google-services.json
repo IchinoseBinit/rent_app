@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1023545226183-09777tddogsibvqtj5n6288pea5qs230.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.binitkoirala.rent_app",
+            "certificate_hash": "e9fc5f2c7094dbcc40f8ab7e886c927bd52e7e8d"
+          }
+        },
+        {
           "client_id": "1023545226183-4blvjkafsfnlk4plnodg5l38l9f5jhdo.apps.googleusercontent.com",
           "client_type": 3
         }
