@@ -10,3 +10,8 @@ class ImageConstants {
   static const _basePath = "assets/images";
   static const logo = "$_basePath/logo.png";
 }
+
+class UserConstants {
+  static const userCollection = "user";
+  static const userId = "uuid";
+}
