@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:rent_app/constants/constants.dart';
 import 'package:rent_app/providers/user_provider.dart';
 import 'package:rent_app/screens/profile_screen.dart';
+import 'package:rent_app/screens/utilities_price_screen.dart';
 import 'package:rent_app/utils/navigate.dart';
 import 'package:rent_app/utils/size_config.dart';
 import 'package:rent_app/widgets/curved_body_widget.dart';
@@ -52,18 +53,19 @@ class HomeScreen extends StatelessWidget {
               ),
             );
           }),
-          ListTile(
-            title: const Text("Profile"),
-            trailing: const Icon(
-              Icons.arrow_right_outlined,
-            ),
-            onTap: () => navigate(
-              context,
-              ProfileScreen(
-                imageUrl: image,
-              ),
-            ),
-          )
+          buildListTile(
+            context,
+            label: "Profile",
+            widget: ProfileScreen(imageUrl: image),
+          ),
+          SizedBox(
+            height: SizeConfig.height,
+          ),
+          buildListTile(
+            context,
+            label: "Utilities Price",
+            widget: UtilitiesPriceScreen(),
+          ),
         ],
       )),
       body: CurvedBodyWidget(
@@ -75,6 +77,20 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Widget buildListTile(
+    BuildContext context, {
+    required String label,
+    required Widget widget,
+  }) {
+    return ListTile(
+      title: Text(label),
+      trailing: const Icon(
+        Icons.arrow_right_outlined,
+      ),
+      onTap: () => navigate(context, widget),
     );
   }
 }
