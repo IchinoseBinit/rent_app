@@ -12,11 +12,12 @@ class FirebaseHelper {
   }) async {
     try {
       GeneralAlertDialog().customLoadingDialog(context);
-      final data = await getData(context,
-          collectionId: collectionId,
-          whereId: whereId,
-          whereValue: whereValue,
-          toShowLoading: false);
+      final data = await getData(
+        context,
+        collectionId: collectionId,
+        whereId: whereId,
+        whereValue: whereValue,
+      );
       if (data.docs.isEmpty) {
         await FirebaseFirestore.instance.collection(collectionId).add(map);
       } else {
@@ -34,7 +35,6 @@ class FirebaseHelper {
     required String collectionId,
     required String whereId,
     required String whereValue,
-    bool toShowLoading = true,
   }) async {
     try {
       final fireStore = FirebaseFirestore.instance;
@@ -45,6 +45,19 @@ class FirebaseHelper {
       return data;
     } catch (ex) {
       throw ex.toString();
+    }
+  }
+
+  addData(
+    BuildContext context, {
+    required Map<String, dynamic> map,
+    required String collectionId,
+  }) async {
+    try {
+      GeneralAlertDialog().customLoadingDialog(context);
+      await FirebaseFirestore.instance.collection(collectionId).add(map);
+    } catch (ex) {
+      print(ex.toString());
     }
   }
 }

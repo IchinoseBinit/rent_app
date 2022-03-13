@@ -3,12 +3,15 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rent_app/constants/constants.dart';
+import 'package:rent_app/providers/room_provider.dart';
 import 'package:rent_app/providers/user_provider.dart';
 import 'package:rent_app/screens/profile_screen.dart';
 import 'package:rent_app/screens/utilities_price_screen.dart';
 import 'package:rent_app/utils/navigate.dart';
 import 'package:rent_app/utils/size_config.dart';
 import 'package:rent_app/widgets/curved_body_widget.dart';
+import 'package:rent_app/widgets/general_alert_dialog.dart';
+import 'package:rent_app/widgets/general_bottom_sheet.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -18,9 +21,36 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final future =
+        Provider.of<RoomProvider>(context, listen: false).fetchRoom(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Welcome Home!"),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              final roomName =
+                  await GeneralBottomSheet().customBottomSheet(context);
+              // print(roomName);
+              if (roomName != null) {
+                try {
+                  GeneralAlertDialog().customLoadingDialog(context);
+                  await Provider.of<RoomProvider>(context, listen: false)
+                      .addRoom(context, roomName);
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                } catch (ex) {
+                  Navigator.pop(context);
+                  GeneralAlertDialog()
+                      .customAlertDialog(context, ex.toString());
+                }
+              }
+            },
+            icon: const Icon(
+              Icons.add_outlined,
+            ),
+          )
+        ],
       ),
       drawer: Drawer(
           child: Column(
@@ -69,13 +99,57 @@ class HomeScreen extends StatelessWidget {
         ],
       )),
       body: CurvedBodyWidget(
-        widget: SingleChildScrollView(
-          child: Column(
-            children: [
-              Text("Rent App"),
-            ],
-          ),
-        ),
+        widget: FutureBuilder(
+            future: future,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+              final listOfRoom = Provider.of<RoomProvider>(
+                context,
+              ).listOfRoom;
+              return listOfRoom.isEmpty
+                  ? const Center(
+                      child: Text("You do not have any rooms!"),
+                    )
+                  : SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Your Rooms",
+                            style: Theme.of(context).textTheme.headline6,
+                          ),
+                          SizedBox(
+                            height: SizeConfig.height,
+                          ),
+                          GridView.builder(
+                            itemCount: listOfRoom.length,
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 3,
+                              childAspectRatio: 2,
+                              mainAxisSpacing: SizeConfig.height,
+                              crossAxisSpacing: SizeConfig.width * 4,
+                            ),
+                            itemBuilder: (context, index) {
+                              return Card(
+                                color: Colors.red.shade200,
+                                child: Center(
+                                  child: Text(
+                                    listOfRoom[index].name,
+                                  ),
+                                ),
+                              );
+                            },
+                            shrinkWrap: true,
+                          )
+                        ],
+                      ),
+                    );
+            }),
       ),
     );
   }

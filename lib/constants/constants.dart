@@ -20,3 +20,8 @@ class UtilitiesPriceConstant {
   static const utilityPriceCollection = "utilities-price";
   static const userId = "uuid";
 }
+
+class RoomConstant {
+  static const roomCollection = "room";
+  static const userId = "uuid";
+}
