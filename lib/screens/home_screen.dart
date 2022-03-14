@@ -6,6 +6,7 @@ import 'package:rent_app/constants/constants.dart';
 import 'package:rent_app/providers/room_provider.dart';
 import 'package:rent_app/providers/user_provider.dart';
 import 'package:rent_app/screens/profile_screen.dart';
+import 'package:rent_app/screens/room_screen.dart';
 import 'package:rent_app/screens/utilities_price_screen.dart';
 import 'package:rent_app/utils/navigate.dart';
 import 'package:rent_app/utils/size_config.dart';
@@ -135,11 +136,15 @@ class HomeScreen extends StatelessWidget {
                               crossAxisSpacing: SizeConfig.width * 4,
                             ),
                             itemBuilder: (context, index) {
-                              return Card(
-                                color: Colors.red.shade200,
-                                child: Center(
-                                  child: Text(
-                                    listOfRoom[index].name,
+                              return InkWell(
+                                onTap: () => navigate(context,
+                                    RoomScreen(room: listOfRoom[index])),
+                                child: Card(
+                                  color: Colors.red.shade200,
+                                  child: Center(
+                                    child: Text(
+                                      listOfRoom[index].name,
+                                    ),
                                   ),
                                 ),
                               );

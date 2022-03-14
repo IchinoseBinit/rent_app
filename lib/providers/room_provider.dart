@@ -25,7 +25,7 @@ class RoomProvider extends ChangeNotifier {
         _listOfRoom.clear();
         for (var element in data.docs) {
           // print(element.data())
-          _listOfRoom.add(Room.fromJson(element.data()));
+          _listOfRoom.add(Room.fromJson(element.data(), element.id));
         }
       }
     } catch (ex) {
