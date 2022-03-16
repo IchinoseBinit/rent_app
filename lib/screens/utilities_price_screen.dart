@@ -143,7 +143,6 @@ class UtilitiesPriceScreen extends StatelessWidget {
   }
 
   submit(BuildContext context) async {
-    print("object");
     if (formKey.currentState!.validate()) {
       try {
         final uid = Provider.of<UserProvider>(context, listen: false).user.uuid;

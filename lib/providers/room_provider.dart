@@ -16,7 +16,6 @@ class RoomProvider extends ChangeNotifier {
     try {
       final uuid = Provider.of<UserProvider>(context, listen: false).user.uuid;
       final data = await FirebaseHelper().getData(
-        context,
         collectionId: RoomConstant.roomCollection,
         whereId: UserConstants.userId,
         whereValue: uuid,
