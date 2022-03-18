@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:rent_app/constants/constants.dart';
 import 'package:rent_app/providers/room_provider.dart';
 import 'package:rent_app/providers/user_provider.dart';
+import 'package:rent_app/screens/list_room_screen.dart';
 import 'package:rent_app/screens/profile_screen.dart';
 import 'package:rent_app/screens/room_screen.dart';
 import 'package:rent_app/screens/utilities_price_screen.dart';
@@ -96,6 +97,14 @@ class HomeScreen extends StatelessWidget {
             context,
             label: "Utilities Price",
             widget: UtilitiesPriceScreen(),
+          ),
+          SizedBox(
+            height: SizeConfig.height,
+          ),
+          buildListTile(
+            context,
+            label: "List of Rooms",
+            widget: ListRoomScreen(),
           ),
         ],
       )),

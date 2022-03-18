@@ -49,4 +49,29 @@ class RoomProvider extends ChangeNotifier {
       throw ex.toString();
     }
   }
+
+  updateRoom(
+    BuildContext context, {
+    required String newRoomName,
+    required String roomId,
+  }) async {
+    try {
+      final map = {
+        "name": newRoomName,
+      };
+
+      await FirebaseHelper().updateData(
+        context,
+        map: map,
+        docId: roomId,
+        collectionId: RoomConstant.roomCollection,
+      );
+
+      final room = _listOfRoom.firstWhere((element) => element.id == roomId);
+      room.name = newRoomName;
+      notifyListeners();
+    } catch (ex) {
+      throw ex.toString();
+    }
+  }
 }

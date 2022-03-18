@@ -22,6 +22,7 @@ class RoomRentProvider extends ChangeNotifier {
           whereValue: roomId);
       // print(data.docs);
       if (_roomRentList.length != data.docs.length) {
+        _roomRentList.clear();
         for (var element in data.docs) {
           _roomRentList.add(RoomRent.fromJson(element.data(), element.id));
         }

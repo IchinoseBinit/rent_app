@@ -72,6 +72,7 @@ class FirebaseHelper {
           .update(map);
     } catch (ex) {
       print(ex.toString());
+      throw ex.toString();
     }
   }
 }

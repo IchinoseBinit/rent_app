@@ -174,6 +174,7 @@ class Histories extends StatelessWidget {
                       ),
                   itemCount: roomRentList.length,
                   shrinkWrap: true,
+                  primary: false,
                   itemBuilder: (context, index) {
                     return buildTableCard(context, roomRentList[index]);
                   });

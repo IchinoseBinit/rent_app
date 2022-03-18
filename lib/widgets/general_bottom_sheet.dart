@@ -1,9 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class GeneralBottomSheet {
-  customBottomSheet(BuildContext context) async {
+  customBottomSheet(BuildContext context, {String? roomName}) async {
     final nameController = TextEditingController();
+    if (roomName != null) {
+      nameController.text = roomName;
+    }
     return await showModalBottomSheet(
       context: context,
       builder: (_) {
@@ -40,7 +42,7 @@ class GeneralBottomSheet {
                 onPressed: () {
                   Navigator.of(context).pop(nameController.text);
                 },
-                child: const Text("Add"),
+                child: Text(roomName != null ? "Update" : "Add"),
               ),
             ],
           ),

@@ -158,11 +158,9 @@ class PayRemainingAmountForm extends StatelessWidget {
   }
 
   submit(BuildContext context) async {
-    print("object");
     if (!formKey.currentState!.validate()) {
       return;
     }
-    print("object second");
     try {
       GeneralAlertDialog().customLoadingDialog(context);
       final paidAmount = double.parse(amountController.text);
@@ -170,7 +168,7 @@ class PayRemainingAmountForm extends StatelessWidget {
           .updateRoomRent(
         context,
         docId: model.roomRentId!,
-        paidAmount: paidAmount,
+        paidAmount: model.paidAmount + paidAmount,
         remainingAmount: model.remainingAmount - paidAmount,
       );
       Navigator.pop(context);
