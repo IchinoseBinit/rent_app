@@ -10,6 +10,8 @@ class ImageConstants {
   static const _basePath = "assets/images";
   static const logo = "$_basePath/logo.png";
   static const pdfDownload = "$_basePath/pdf_download.png";
+
+  static const notificationIcon = "notification";
 }
 
 class UserConstants {
@@ -47,4 +49,9 @@ class MonthConstant {
     "Falgun",
     "Chaitra"
   ];
+}
+
+class SecureStorageConstants {
+  static const emailKey = "email";
+  static const passwordKey = "password";
 }
