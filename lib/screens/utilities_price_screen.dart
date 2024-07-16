@@ -57,14 +57,14 @@ class UtilitiesPriceScreen extends StatelessWidget {
                     children: [
                       Text(
                         "Set your utilities price!",
-                        style: Theme.of(context).textTheme.headline6,
+                        style: Theme.of(context).textTheme.titleSmall,
                       ),
                       SizedBox(
                         height: SizeConfig.height * 2,
                       ),
                       Text(
                         "Electricity unit",
-                        style: Theme.of(context).textTheme.bodyText2,
+                        style: Theme.of(context).textTheme.bodySmall,
                       ),
                       SizedBox(
                         height: SizeConfig.height,
@@ -83,7 +83,7 @@ class UtilitiesPriceScreen extends StatelessWidget {
                       ),
                       Text(
                         "Water Fee",
-                        style: Theme.of(context).textTheme.bodyText2,
+                        style: Theme.of(context).textTheme.bodySmall,
                       ),
                       SizedBox(
                         height: SizeConfig.height,
@@ -105,7 +105,7 @@ class UtilitiesPriceScreen extends StatelessWidget {
                       ),
                       Text(
                         "Internet Fee",
-                        style: Theme.of(context).textTheme.bodyText2,
+                        style: Theme.of(context).textTheme.bodySmall,
                       ),
                       SizedBox(
                         height: SizeConfig.height,

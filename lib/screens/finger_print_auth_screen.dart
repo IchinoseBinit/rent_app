@@ -51,8 +51,11 @@ class FingerPrintAuthScreen extends StatelessWidget {
       {required String email, required String password}) async {
     final localAuth = LocalAuthentication();
     final authenticate = await localAuth.authenticate(
-        localizedReason: "Please place your fingerprint on the sensor",
-        biometricOnly: true);
+      localizedReason: "Please place your fingerprint on the sensor",
+      options: AuthenticationOptions(
+        biometricOnly: true,
+      ),
+    );
 
     if (authenticate) {
       const flutterSecureStorage = FlutterSecureStorage();

@@ -35,14 +35,14 @@ class GeneralTableRow {
       children: [
         Text(
           title,
-          style: Theme.of(context).textTheme.bodyText2!.copyWith(
+          style: Theme.of(context).textTheme.bodySmall!.copyWith(
                 fontSize: SizeConfig.width * 3.5,
               ),
         ),
         Text(
           isAmount ? "Rs. $amount" : month!,
           textAlign: TextAlign.end,
-          style: Theme.of(context).textTheme.bodyText1!.copyWith(
+          style: Theme.of(context).textTheme.bodySmall!.copyWith(
                 fontSize: SizeConfig.width * 3.5,
               ),
         ),

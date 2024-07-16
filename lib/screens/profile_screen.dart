@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -63,7 +62,7 @@ class ProfileScreen extends StatelessWidget {
               ),
               Text(
                 "Edit your profile",
-                style: Theme.of(context).textTheme.headline6,
+                style: Theme.of(context).textTheme.titleSmall,
               ),
               SizedBox(
                 height: SizeConfig.height * 2,
@@ -161,7 +160,7 @@ class ProfileScreen extends StatelessWidget {
           children: [
             Text(
               "Choose a source",
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.titleSmall,
             ),
             SizedBox(
               height: SizeConfig.height * 2,

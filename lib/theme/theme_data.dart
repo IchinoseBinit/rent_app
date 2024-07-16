@@ -15,22 +15,22 @@ ThemeData lightTheme(BuildContext context) {
       elevation: 0,
     ),
     textTheme: const TextTheme(
-      headline5: TextStyle(
+      titleLarge: TextStyle(
         color: Colors.black,
         fontFamily: "Open Sans",
         fontWeight: FontWeight.w600,
       ),
-      headline2: TextStyle(color: Colors.black),
-      bodyText1: TextStyle(color: Colors.black, fontFamily: "Open Sans"),
-      bodyText2: TextStyle(color: Colors.black),
-      subtitle1: TextStyle(
+      titleMedium: TextStyle(color: Colors.black),
+      bodyLarge: TextStyle(color: Colors.black, fontFamily: "Open Sans"),
+      bodyMedium: TextStyle(color: Colors.black),
+      bodySmall: TextStyle(
         color: Colors.black,
         fontFamily: "Open Sans",
       ),
-      subtitle2: TextStyle(
+      labelLarge: TextStyle(
         color: Colors.black,
       ),
-      caption: TextStyle(
+      labelMedium: TextStyle(
         color: Colors.black,
         fontFamily: "Open Sans",
       ),
@@ -102,22 +102,22 @@ ThemeData darkTheme(BuildContext context) {
       ),
     ),
     textTheme: const TextTheme(
-      headline5: TextStyle(
+      titleMedium: TextStyle(
         color: Colors.white,
         fontFamily: "Open Sans",
         fontWeight: FontWeight.w600,
       ),
-      headline2: TextStyle(color: Colors.white),
-      bodyText1: TextStyle(color: Colors.white, fontFamily: "Open Sans"),
-      bodyText2: TextStyle(color: Colors.white),
-      subtitle1: TextStyle(
+      titleLarge: TextStyle(color: Colors.white),
+      bodyLarge: TextStyle(color: Colors.white, fontFamily: "Open Sans"),
+      bodySmall: TextStyle(color: Colors.white),
+      labelLarge: TextStyle(
         color: Colors.white,
         fontFamily: "Open Sans",
       ),
-      subtitle2: TextStyle(
+      labelMedium: TextStyle(
         color: Colors.white,
       ),
-      caption: TextStyle(
+      labelSmall: TextStyle(
         color: Colors.white,
         fontFamily: "Open Sans",
       ),

@@ -178,9 +178,10 @@ class LoginScreen extends StatelessWidget {
   void loginViaFingerprint(BuildContext context) async {
     final localAuth = LocalAuthentication();
     final authenticated = await localAuth.authenticate(
-      localizedReason: "Place your fingerprint to login",
-      biometricOnly: true,
-    );
+        localizedReason: "Place your fingerprint to login",
+        options: AuthenticationOptions(
+          biometricOnly: true,
+        ));
     if (authenticated) {
       const secureStorage = FlutterSecureStorage();
       final email =

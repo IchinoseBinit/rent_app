@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
   configureNotification() {
     const androidSettings =
         AndroidInitializationSettings(ImageConstants.notificationIcon);
-    const iosSettings = IOSInitializationSettings();
+    const iosSettings = DarwinInitializationSettings();
 
     const initializationSettings =
         InitializationSettings(android: androidSettings, iOS: iosSettings);
